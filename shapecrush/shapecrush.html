@@ -1,0 +1,58 @@
+<html>
+<body>
+
+<script src="Res.js"></script>
+<script src="Shape.js"></script>
+<script src="Tile.js"></script>
+<script src="GSM.js"></script>
+<script src="PlayState.js"></script>
+<script src="GameOverState.js"></script>
+<script>
+	
+	var canvas = document.createElement('canvas');
+	var context = canvas.getContext("2d");
+	
+	canvas.width = 500;
+	canvas.height = 400;
+	this.canvas.style.border = '1px solid black';
+	document.body.append(canvas);
+	
+	var gsm;
+	
+	function init(){
+		gsm = new GSM(context);
+		gsm.push(new PlayState(gsm, canvas));
+	}
+	
+	function update(){
+		gsm.update();
+	}
+	
+	function render(){
+		context.clearRect(0,0,canvas.width, canvas.height);
+		gsm.render(context);
+	}
+	
+	init();
+	setInterval(function(){
+		update();
+		render();
+	}, 1000/30);
+	
+	canvas.addEventListener("mousedown", function(e){
+		var pos = getPos(canvas, e);
+		gsm.getCurrentState().mouseMove(pos);
+	});
+	
+	function getPos(c, e){
+		var rect = c.getBoundingClientRect();
+		return {x:e.clientX - rect.left, y: e.clientY - rect.top};
+	}
+	
+</script>
+</body>
+</html>
+
+
+
+
