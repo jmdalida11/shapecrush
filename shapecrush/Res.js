@@ -5,7 +5,7 @@ var imgs = {
 	"Diamond" : loadImage('diamond.png'),
 	"Polygon" : loadImage('polygon.png'),
 	"Trapyzoid" : loadImage('trapyzoid.png'),
-	"bg" : loadImage('bg.png')
+	"bg" : loadImage('bg.PNG')
 };
 
 function getImageRes(key){
